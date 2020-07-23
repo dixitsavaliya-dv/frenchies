@@ -13,4 +13,6 @@ headers: {
     apikey: 'courierservice-0000-9876-5432-10@@',
     'Access-Control-Allow-Origin': true
 },
+changePassword:'Change Password',
+profile: 'Profile'
 }

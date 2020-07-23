@@ -38,6 +38,8 @@ import {
 } from '../../variables/charts';
 
 import dashboardStyle from '../../assets/jss/material-dashboard-react/views/dashboardStyle';
+import constant from '../../constant/constant';
+import utils from '../../helper/utils/utils';
 
 interface Props {
   classes: any;
@@ -56,6 +58,11 @@ class Dashboard extends React.Component<Props, State> {
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeIndex = this.handleChangeIndex.bind(this);
   }
+
+  async componentDidMount() {
+    document.title = constant.dashboard + utils.getAppName();
+  }
+
   handleChange = (event: any, value: number) => {
     this.setState({ value });
   }

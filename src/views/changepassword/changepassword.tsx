@@ -21,7 +21,7 @@ import {
     InputGroupAddon
 } from 'reactstrap';
 import utils from '../../helper/utils/utils';
-import Dashboard from '../../layouts/Admin';
+import constant from '../../constant/constant';
 
 class ChangePassword extends Component {
 
@@ -36,6 +36,11 @@ class ChangePassword extends Component {
         super(props);
         this.ChangePassword = this.ChangePassword.bind(this);
     }
+
+    async componentDidMount() {
+        document.title = constant.changePassword + utils.getAppName();
+      }
+    
 
     validate() {
         let oldpassworderror = "";
@@ -74,7 +79,7 @@ class ChangePassword extends Component {
                 // console.log("updatePassword",updatePassword);
 
                 if (this.state.oldpassword === obj.oldpassword && this.state.newpassword === obj.newpassword) {
-                    const msg = "Password Updated Successfully";
+                    const msg = "Password Changed Successfully";
                     utils.showSuccess(msg);
                 } else {
                     const msg1 = "Error";

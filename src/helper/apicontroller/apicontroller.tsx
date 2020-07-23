@@ -6,7 +6,8 @@ const apiUrl = {
         forgotpassword:'',
         updateData:'user',
         getCount:'user',
-        getUserPaginationData:'user'
+        getUserPaginationData:'user',
+        updatePassword:'user'
 
     }
 }

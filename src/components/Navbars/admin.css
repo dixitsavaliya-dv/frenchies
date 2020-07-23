@@ -8,3 +8,16 @@
 .Header-appBar-128 {
     color: #fff !important;
 }
+
+@media (max-width: 959.95px) {
+    .HeaderLinks-pooperNav-156 {
+        position: relative !important;
+    }
+    .makeStyles-popperNav-76 {
+        top: unset !important;
+        left: unset !important;
+        position: static !important;
+        transform: none !important;
+        will-change: unset !important;
+    }
+}

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import utils from '../../utils';
 import {
   Button,
   Card,
@@ -14,8 +13,9 @@ import {
 } from "reactstrap";
 import "./userprofile.css";
 // import NavBar from '../navbar/navbar';
-// import API from '../../service/service';
+import API from '../../service/user.service';
 import constant from "../../constant/constant";
+import utils from "../../helper/utils/utils";
 // import { profileUpdateRequest, profileListRequest } from '../../modelController/profileModel';
 
 class UserProfile extends React.Component {
@@ -41,7 +41,7 @@ class UserProfile extends React.Component {
   }
 
   async componentDidMount() {
-    // document.title = constant.profileTitle + utils.getAppName();
+    document.title = constant.profile + utils.getAppName();
     // const getProfile = await API.getProfile();
     // console.log("getprofile",getProfile);
     // const getProfile : profileListRequest = [];
@@ -140,10 +140,10 @@ class UserProfile extends React.Component {
           this.state.selectedFile === obj.selectedFile
         ) {
           const msg = "Profile Updated Successfully";
-          // utils.showSuccess(msg);
+          utils.showSuccess(msg);
         } else {
           const msg1 = "Error";
-          // utils.showError(msg1);
+          utils.showError(msg1);
         }
       }
     }

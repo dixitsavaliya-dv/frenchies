@@ -13,10 +13,10 @@ const utils = {
             text: msg,
             icon: 'error'
         });
+    },
+    getAppName:() => {
+        return ' | Redtron App'
     }
-    // getAppName:() => {
-    //     return ' | Kartzoo App'
-    // }
 }
 
 export default utils;

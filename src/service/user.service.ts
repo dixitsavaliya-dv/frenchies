@@ -6,9 +6,6 @@ export default {
     loginUser: async function (data: any) {
         return await WebReqUrl.post(Constant.apiUrl + apiUrl.userController.createData, data);
     },
-    signupUser: async function (data: any) {
-        return await WebReqUrl.post(Constant.apiUrl + apiUrl.userController.createData, data);
-    },
     forgotPassword: async function (data: any) {
         return await WebReqUrl.post(Constant.apiUrl + apiUrl.userController.forgotpassword, data);
     },
@@ -17,6 +14,9 @@ export default {
     },
     updateProfile: async function (data: any) {
         return await WebReqUrl.post(Constant.apiUrl + apiUrl.userController.updateData, data);
+    },
+    updatePassword: async function (data: any) {
+        return await WebReqUrl.post(Constant.apiUrl + apiUrl.userController.updatePassword, data);
     },
     getUserCount: async function () {
         return await WebReqUrl.get(Constant.apiUrl + apiUrl.userController.getCount);
