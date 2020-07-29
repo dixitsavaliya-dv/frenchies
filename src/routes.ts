@@ -1,32 +1,46 @@
-import Dashboard from '@material-ui/icons/Dashboard';
-import DashboardPage from './views/Dashboard/Dashboard';;
-import TableList from './views/TableList/TableList';
+export default {
+ items:[
+    {
+      id:'dashborad',
+      url: '/dashboard',
+      name: 'Dashboard',
+      icon: 'fa fa-desktop fs-16'
+    },
+    {
+      id:'user management',
+      name: 'User-Management',
+      icon: 'fa fa-user fs-16',
+      children: [
+        {
+          name: 'User',
+          url: '/users'
+        },
+        {
+          name: 'Role',
+          url: '/role'
+        },
+        {
+          name: 'Role Privileges',
+          url: '/role-privileges'
+        }
+      ]
+    },
+    {
+      id:'Category management',
+      name: 'Category Management',
+      icon: 'fa fa-list fs-16',
+      children: [
+        {
+          name: 'Category',
+          url: '/category'
+        },
+        {
+          name: 'Sub Category',
+          url: '/subcategory'
+        }
+      ]
+    }
+  ]
+}
 
-const dashboardRoutes = [
-  {
-    id:'dashborad',
-    type: 'dropdown',
-    path: '/dashboard',
-    name: 'Dashboard',
-    icon: Dashboard,
-    component: DashboardPage,
-    layout: '/admin',
-    children: [
-      {
-        name: 'User',
-        url: '/users'
-      }
-    ]
-  },
-  {
-    id:'table',
-    type: 'link',
-    path: '/table',
-    name: 'Table List',
-    icon: 'content_paste',
-    component: TableList,
-    layout: '/admin'
-  }
-];
 
-export default dashboardRoutes;

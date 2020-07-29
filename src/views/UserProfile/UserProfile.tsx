@@ -16,6 +16,7 @@ import "./userprofile.css";
 import API from '../../service/user.service';
 import constant from "../../constant/constant";
 import utils from "../../helper/utils/utils";
+import Layout from "../../layouts/Admin";
 // import { profileUpdateRequest, profileListRequest } from '../../modelController/profileModel';
 
 class UserProfile extends React.Component {
@@ -166,12 +167,12 @@ class UserProfile extends React.Component {
 
   render() {
     return (
-      <>
+      <Layout>
         <div className="row">
           <Col xs="12" sm="12" md="12" lg="12" xl="12">
             <Card>
               <CardHeader>
-                <strong className="header">My Profile</strong>
+                <strong className="maincontent">My Profile</strong>
               </CardHeader>
               <CardBody>
                 <Row>
@@ -305,7 +306,7 @@ class UserProfile extends React.Component {
             </Card>
           </Col>
         </div>
-      </>
+      </Layout>
     );
   }
 }

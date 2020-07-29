@@ -22,6 +22,7 @@ import {
 } from 'reactstrap';
 import utils from '../../helper/utils/utils';
 import constant from '../../constant/constant';
+import Admin from '../../layouts/Admin';
 
 class ChangePassword extends Component {
 
@@ -93,12 +94,12 @@ class ChangePassword extends Component {
     render() {
 
         return (
-            <div>
+            <Admin>
                 <Row>
                     <Col xs="12" sm="12" md="12" lg="12" xl="12">
                         <Card>
                             <CardHeader>
-                                <strong className="header">Change Password</strong>
+                                <strong className="maincontent">Change Password</strong>
                              
                             </CardHeader>
                             <CardBody>
@@ -149,7 +150,7 @@ class ChangePassword extends Component {
                         </Card>
                     </Col>
                 </Row>
-            </div>
+            </Admin>
         );
     }
 }

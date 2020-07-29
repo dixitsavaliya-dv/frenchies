@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from "react";
 import { Switch, Route, Link } from "react-router-dom";
+import { useHistory } from "react-router";
 // creates a beautiful scrollbar
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
@@ -24,37 +25,37 @@ import { Badge, Nav, NavItem, NavLink as RsNavLink } from "reactstrap";
 import classNames from "classnames";
 import "./admin.css";
 
-const switchRoutes = (
-  <Switch>
-    {routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      }
-    })}
-  </Switch>
-);
+// const switchRoutes = (
+//   <Switch>
+//     {routes.map((prop, key) => {
+//       if (prop.layout === "/admin") {
+//         return (
+//           <Route
+//             path={prop.layout + prop.path}
+//             component={prop.component}
+//             key={key}
+//           />
+//         );
+//       }
+//     })}
+//   </Switch>
+// );
 
-const switchHeaderRoutes = (
-  <Switch>
-    {headerRoutes.map((prop, key) => {
-      if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      }
-    })}
-  </Switch>
-);
+// const switchHeaderRoutes = (
+//   <Switch>
+//     {headerRoutes.map((prop, key) => {
+//       if (prop.layout === "/admin") {
+//         return (
+//           <Route
+//             path={prop.layout + prop.path}
+//             component={prop.component}
+//             key={key}
+//           />
+//         );
+//       }
+//     })}
+//   </Switch>
+// );
 
 interface Props {
   classes: any;
@@ -69,7 +70,7 @@ interface State {
   mobileOpen: boolean;
 }
 
-class Dashboard extends React.Component<Props, State> {
+class Admin extends React.Component {
   refs: any;
   state = {
     image: image,
@@ -79,67 +80,29 @@ class Dashboard extends React.Component<Props, State> {
     mobileOpen: false,
     isOpen: false,
   };
-  constructor(props: Props) {
+  constructor(props: any) {
     super(props);
+    this.open = this.open.bind(this);
+    this.logout = this.logout.bind(this);
+    this.activeRoute = this.activeRoute.bind(this);
+    this.dropdonSubmenu = this.dropdonSubmenu.bind(this);
+    this.showMenu = this.showMenu.bind(this);
     // this.closeNav = this.closeNav.bind(this);
   }
 
-  handleImageClick = (i: string) => {
-    this.setState({ image: i });
-  };
-
-  handleColorClick = (c: string) => {
-    this.setState({ color: c });
-  };
-
-  handleFixedClick = () => {
-    if (this.state.fixedClasses === "dropdown") {
-      this.setState({ fixedClasses: "dropdown show" });
-    } else {
-      this.setState({ fixedClasses: "dropdown" });
-    }
-  };
-
-  handleDrawerToggle = () => {
-    this.setState({ mobileOpen: !this.state.mobileOpen });
-  };
-
-  getRoute() {
-    return this.props.location.pathname !== "/admin/maps";
-  }
-
-  resizeFunction = () => {
-    if (window.innerWidth >= 960) {
-      this.setState({ mobileOpen: false });
-    }
-  };
-
-  componentDidMount() {
-    if (navigator.platform.indexOf("Win") > -1) {
-      const ps = new PerfectScrollbar(this.refs.mainPanel);
-    }
-    window.addEventListener("resize", this.resizeFunction);
-  }
-
-  componentDidUpdate(e: any) {
-    if (e.history.location.pathname !== e.location.pathname) {
-      this.refs.mainPanel.scrollTop = 0;
-      if (this.state.mobileOpen) {
-        this.setState({ mobileOpen: false });
-      }
-    }
-  }
-
-  //   closeNav = () => {
-  //     this.setState({ isOpen: !this.state.isOpen });
-  // }
-
   activeRoute(routeName: any, props: any) {
     const route = window.location.pathname;
-    console.log("route", route);
     return route === routeName
       ? `nav-item nav-dropdown open`
       : `nav-item nav-dropdown`;
+  }
+
+  open() {
+    this.setState({ mobileOpen: !this.state.mobileOpen });
+  }
+
+  showMenu() {
+    this.setState({ isOpen: !this.state.isOpen });
   }
 
   handleClick(e: any) {
@@ -147,12 +110,24 @@ class Dashboard extends React.Component<Props, State> {
     e.target.parentElement.classList.toggle("open");
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.resizeFunction);
+  logout() {
+    window.location.href = "/#/";
   }
 
+  public dropdonSubmenu = (id: any) => {
+    const element = document.getElementById(id);
+    if (element != null) {
+      if (element.classList.value.includes("subList--hidden")) {
+        element.classList.remove("subList--hidden");
+        element.classList.add("subList");
+      } else {
+        element.classList.remove("subList");
+        element.classList.add("subList--hidden");
+      }
+    }
+  };
+
   render() {
-    const { classes, ...rest } = this.props;
     const badge = (badge: any) => {
       if (badge) {
         const classes = classNames(badge.class);
@@ -206,6 +181,7 @@ class Dashboard extends React.Component<Props, State> {
 
     // nav link
     const navLink = (item: any, key: any, classes: any) => {
+
       const url = item.url ? item.url : "";
       return (
         <NavItem key={key} className={classes.item}>
@@ -216,10 +192,11 @@ class Dashboard extends React.Component<Props, State> {
               {badge(item.badge)}
             </RsNavLink>
           ) : (
+            // to={url}
             <RsNavLink
-              to={url}
               className={classes.link}
-              activeClassName="active"
+              activeclassname="active"
+              onClick={() => (window.location.href = `/#${url}`)}
             >
               <i className={classes.icon} />
               {item.name}
@@ -233,49 +210,28 @@ class Dashboard extends React.Component<Props, State> {
     // nav dropdown
     const navDropdown = (item: any, key: any) => {
       return (
-        <li key={key} className={this.activeRoute(item.url, this.props)}>
-          {item
-            ? item.type === "link" && (
-                <a href="#" className="has-chevron" data-toggle="collapse">
-                  {" "}
-                  <span>
-                    <i className={item.icon} />
-                    {item.name}{" "}
-                  </span>
-                </a>
-              )
-            : ""}
-          {item
-            ? item.type !== "link" && (
-                <>
-                  <a
-                    href="#"
-                    className="has-chevron  nav-dropdown-toggle"
-                    data-toggle="collapse"
-                    data-target={`#${item.id}`}
-                    aria-expanded="false"
-                    aria-controls={`${item.id}`}
-                    onClick={this.handleClick.bind(this)}
-                  >
-                    {" "}
-                    <span>
-                      <i className={item.icon} />
-                      {item.name}{" "}
-                    </span>
-                  </a>
-                  <ul
-                    id={`${item.id}`}
-                    className="collapse"
-                    aria-labelledby={`${item.id}`}
-                    data-parent="#side-nav-accordion"
-                  >
-                    {navChildList(item.children)}
-                  </ul>
-                </>
-              )
-            : ""}
+        <li
+          key={key}
+          className={this.activeRoute(item.children[0].url, this.props)}
+        >
+          <div
+            className="navList__subheading row row--align-v-center"
+            onClick={() =>
+              this.dropdonSubmenu(`sub_${item.children[0].url.split("/")[1]}`)
+            }
+          >
+            <span className="navList__subheading-icon">
+              <i className={item.icon} />
+            </span>
 
-          {/* <a className="nav-link " href="#" onClick={handleClick.bind(this)}><i className={item.icon}></i>{item.name}</a> */}
+            <span className="navList__subheading-title">{item.name}</span>
+          </div>
+          <ul
+            className="subList subList--hidden"
+            id={`sub_${item.children[0].url.split("/")[1]}`}
+          >
+            {navChildList(item.children)}
+          </ul>
         </li>
       );
     };
@@ -293,8 +249,7 @@ class Dashboard extends React.Component<Props, State> {
     // nav list
     const navList = (items: any) => {
       if (items !== undefined) {
-        console.log("items", items);
-        var itemsArray = items;
+        var itemsArray = items.items;
 
         if (itemsArray) {
           return itemsArray.map((item: any, index: any) =>
@@ -307,7 +262,6 @@ class Dashboard extends React.Component<Props, State> {
     const navChildList = (chilItem: any) => {
       if (chilItem !== undefined) {
         var itemsArray = chilItem;
-
         if (itemsArray) {
           return itemsArray.map((chilItem: any, index: any) =>
             navType(chilItem, index)
@@ -321,87 +275,80 @@ class Dashboard extends React.Component<Props, State> {
       return link === "http";
     };
 
+
     return (
-      <div className={classes.wrapper}>
-        <Sidebar
-          routes={routes}
-          logoText={"React"}
-          logo={logo}
-          image={this.state.image}
-          handleDrawerToggle={this.handleDrawerToggle}
-          open={this.state.mobileOpen}
-          color={this.state.color}
-          {...rest}
-        />
-        <div className={classes.mainPanel} ref="mainPanel">
-          <Navbar
-            routes={routes}
-            handleDrawerToggle={this.handleDrawerToggle}
-            {...rest}
-          />
-          {/* On the /maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
-          {this.getRoute() ? (
-            <div className={classes.content}>
-              {this.props.location.pathname == "/admin/user" ||
-              this.props.location.pathname == "/admin/change-password" ? (
-                <div className={classes.container}>{switchHeaderRoutes}</div>
+      <div
+        className={
+          this.state.mobileOpen === false ? "grid" : "grid grid--noscroll"
+        }
+      >
+        <header className="header">
+          <i className="fas fa-bars header__menu" onClick={this.open} />
+          <div className="header__search">
+            {/* <input className="header__input" placeholder="Search..." /> */}
+          </div>
+          <div className="header__avatar" onClick={this.showMenu}>
+            <div className="dropdown">
+              {this.state.isOpen === true ? (
+                <ul className="dropdown__list">
+                  <li className="dropdown__list-item">
+                    <span className="dropdown__icon">
+                      <i className="far fa-user" />
+                    </span>
+                    <Link to="/user">
+                      <span className="dropdown__title">My Profile</span>
+                    </Link>
+                  </li>
+                  <li className="dropdown__list-item">
+                    <span className="dropdown__icon">
+                      <i className="fas fa-clipboard-list" />
+                    </span>
+                    <Link to="/change-password">
+                      <span className="dropdown__title">Change Password</span>
+                    </Link>
+                  </li>
+                  <li className="dropdown__list-item">
+                    <span className="dropdown__icon">
+                      <i className="fas fa-sign-out-alt" />
+                    </span>
+
+                    <span className="dropdown__title" onClick={this.logout}>
+                      Logout
+                    </span>
+                  </li>
+                </ul>
               ) : (
-                // <div
-                //   className={
-                //     this.state.isOpen == true
-                //       ? "ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar"
-                //       : "ms-body ms-primary-theme ms-has-quickbar"
-                //   }
-                // >
-                //   <div
-                //     className="ms-aside-overlay ms-overlay-left ms-toggler"
-                //     data-target="#ms-side-nav"
-                //     data-toggle="slideLeft"
-                //   />
-                //   <div
-                //     className="ms-aside-overlay ms-overlay-right ms-toggler"
-                //     data-target="#ms-recent-activity"
-                //     data-toggle="slideRight"
-                //   />
-                //   <aside
-                //     id="ms-side-nav"
-                //     className="side-nav fixed ms-aside-scrollable ms-aside-left"
-                //   >
-                //     <div className="logo-sn ms-d-block-lg">
-                //       <Link className="pl-0 ml-0 text-center" to="/dashboard">
-                //         <img src="./assets/images/logo1.svg" alt="logo" />
-                //       </Link>
-                //     </div>
-
-                //     <ul
-                //       className="accordion ms-main-aside fs-14"
-                //       id="side-nav-accordion"
-                //     >
-                //       <li className="menu-item">{navList(routes)}</li>
-                //     </ul>
-                //   </aside>
-                // </div>
-
-                <div className={classes.container}>{switchRoutes}</div>
+                ""
               )}
             </div>
-          ) : (
-            ""
-            // <div className={classes.map}>{switchRoutes}</div>
-          )}
-          {this.getRoute() ? <Footer /> : null}
-          <FixedPlugin
-            handleImageClick={this.handleImageClick}
-            handleColorClick={this.handleColorClick}
-            bgColor={this.state.color}
-            bgImage={this.state.image}
-            handleFixedClick={this.handleFixedClick}
-            fixedClasses={this.state.fixedClasses}
-          />
-        </div>
+          </div>
+        </header>
+
+        <aside
+          className={
+            this.state.mobileOpen === false
+              ? "sidenav"
+              : "sidenav sidenav--active"
+          }
+        >
+          <div className="sidenav__brand">
+            <i className="fas fa-feather-alt sidenav__brand-icon" />
+            <Link className="sidenav__brand-link" to="/admin/dashboard">
+              Ux<span className="text-light">Pro</span>
+            </Link>
+            <i
+              className="fas fa-times sidenav__brand-close"
+              onClick={this.open}
+            />
+          </div>
+          <div className="row row--align-v-center row--align-h-center">
+            <ul className="navList">{navList(routes)}</ul>
+          </div>
+        </aside>
+        <div className="main">{this.props.children}</div>
       </div>
     );
   }
 }
 
-export default withStyles(dashboardStyle)(Dashboard);
+export default Admin;

@@ -6,7 +6,10 @@ import utils from "../../helper/utils/utils";
 import Constant from "../../constant/constant";
 // import $ from "jquery";
 import constant from "../../constant/constant";
+import { createBrowserHistory } from "history";
 // import { loginCreateRequest } from '../../modelController/loginModel';
+
+const history = createBrowserHistory();
 
 class Login extends React.Component<{ history: any }> {
   state = {
@@ -136,7 +139,7 @@ class Login extends React.Component<{ history: any }> {
         ) {
           const msg = "Login Successfully";
           utils.showSuccess(msg);
-          this.props.history.push("/admin/dashboard");
+          this.props.history.push("/dashboard");
         } else {
           const msg1 = "Error";
           utils.showError(msg1);
