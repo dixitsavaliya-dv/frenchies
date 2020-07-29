@@ -7,10 +7,10 @@ import {
   CardBody,
   CardHeader,
   CardTitle,
-  Form,
-  CustomInput,
   Table,
   Input,
+  Form,
+  CustomInput,
   Col,
   FormGroup,
   Label,
@@ -22,30 +22,28 @@ import {
 // import Switch from "react-switch";
 import constant from "../../../constant/constant";
 import Admin from "../../../layouts/Admin";
-// import { subCategoryCreateRequest, subCategoryUpdateRequest } from '../../../modelController/subCategoryModel';
+// import { categoryCreateRequest,categoryUpdateRequest } from '../../../modelController/categoryModel';
 
-class AddSubCategory extends React.Component<{ history: any }> {
+class AddShop extends React.Component<{ history: any }> {
   state = {
-    categoryname: "",
-    categorynameerror: "",
-    selectcategory: "",
-    selectcategoryerror: "",
-    categorytype: "",
-    categorytypeerror: "",
+    shopname: "",
+    shopnameerror: "",
+    userselect: "",
+    userselecterror: "",
   };
 
   constructor(props: any) {
     super(props);
     // this.Profile = this.Profile.bind(this);
     this.handleChangeEvent = this.handleChangeEvent.bind(this);
-    // this.addSubCategory = this.addSubCategory.bind(this);
     this.onItemSelect = this.onItemSelect.bind(this);
+    // this.addCategory = this.addCategory.bind(this);
   }
 
   async componentDidMount() {
-    // document.title = constant.addSubCategoryTitle + utils.getAppName();
-    // const getAllCategory = await API.getAllCategory();
-    // console.log("getAllCategory",getAllCategory);
+    // document.title = constant.addCategoryTitle + utils.getAppName();
+    // const getProfile = await API.getProfile();
+    // console.log("getprofile",getProfile);
   }
 
   onItemSelect() {
@@ -53,28 +51,19 @@ class AddSubCategory extends React.Component<{ history: any }> {
   }
 
   validate() {
-    let categorynameerror = "";
-    let categorytypeerror = "";
-    let selectcategoryerror = "";
+    let shopnameerror = "";
+    let userselecterror = "";
 
-    if (!this.state.categoryname) {
-      categorynameerror = "please enter category name";
+    if (!this.state.shopname) {
+        shopnameerror = "please enter category name";
     }
 
-    if (!this.state.categorytype) {
-      categorytypeerror = "please  enter category type";
+    if (!this.state.userselect) {
+      userselecterror = "please select user";
     }
 
-    if (!this.state.selectcategory) {
-      selectcategoryerror = "please select category";
-    }
-
-    if (categorynameerror || categorytypeerror || selectcategoryerror) {
-      this.setState({
-        categorynameerror,
-        categorytypeerror,
-        selectcategoryerror,
-      });
+    if (shopnameerror || userselecterror) {
+      this.setState({ shopnameerror, userselecterror });
       return false;
     }
     return true;
@@ -87,38 +76,35 @@ class AddSubCategory extends React.Component<{ history: any }> {
     this.setState(state);
   }
 
-  // async addSubCategory() {
+  // async addCategory() {
   //     const isValid = this.validate();
   //     if (isValid) {
   //         this.setState({
-  //             categorynameerror: '',
-  //             selectedFileerror: '',
-  //             selectcategoryerror: ''
+  //             shopnameerror: '',
+  //             userselecterror: ''
   //         })
-  //         if (this.state.categoryname && this.state.selectedFile && this.state.selectcategory) {
-  //             const obj : subCategoryCreateRequest = {
+  //         if (this.state.categoryname && this.state.selectedFile) {
+  //             const obj : categoryCreateRequest = {
   //                 categoryname: this.state.categoryname,
-  //                 selectedFile: this.state.selectedFile,
-  //                 selectcategory: this.state.selectcategory
+  //                 selectedFile: this.state.selectedFile
   //             }
 
-  //             const obj1 : subCategoryUpdateRequest = {
+  //             const obj1 : categoryUpdateRequest = {
   //                 id:'',
   //                 categoryname: this.state.categoryname,
-  //                 selectedFile: this.state.selectedFile,
-  //                 selectcategory: this.state.selectcategory
+  //                 selectedFile: this.state.selectedFile
   //             }
 
-  //             // const addSubCategory = await API.addSubCategory(obj);
-  //             // console.log("addSubCategory",addSubCategory);
+  //             // const addCategory = await API.addCategory(obj);
+  //             // console.log("addCategory",addCategory);
 
   //             // const editCategory = await API.editCategory(obj);
   //             // console.log("editCategory",editCategory);
 
   //             if (this.state.categoryname === obj.categoryname && this.state.selectedFile === obj.selectedFile) {
-  //                 const msg = "SubCategory Added Successfully";
+  //                 const msg = "Category Added Successfully";
   //                 utils.showSuccess(msg);
-  //                 this.props.history.push('/subcategory');
+  //                 this.props.history.push('/category');
   //             } else {
   //                 const msg1 = "Error";
   //                 utils.showError(msg1);
@@ -138,7 +124,7 @@ class AddSubCategory extends React.Component<{ history: any }> {
                   <CardHeader>
                     <Row>
                       <Col xs="12" sm="6" md="9" lg="9" xl="9">
-                        <h1 className="main_color">Add Sub Category</h1>
+                        <h1 className="main_color">Add Shop</h1>
                       </Col>
                       <Col
                         xs="12"
@@ -148,7 +134,7 @@ class AddSubCategory extends React.Component<{ history: any }> {
                         xl="3"
                         style={{ textAlign: "right" }}
                       >
-                        <Link to="/subcategory">
+                        <Link to="/shop">
                           <Button
                             type="button"
                             size="sm"
@@ -162,22 +148,20 @@ class AddSubCategory extends React.Component<{ history: any }> {
                     </Row>
                   </CardHeader>
                   <CardBody>
-                    <Row>
+                  <Row>
                       <Col xs="12" sm="12" md="6" lg="6" xl="6">
                         <Form>
                           <FormGroup>
-                            <Label for="exampleCustomSelect">
-                              Select Category
-                            </Label>
+                            <Label for="exampleCustomSelect">Select User</Label>
                             <CustomInput
                               type="select"
                               id="exampleCustomSelect"
-                              name="customSelect"
+                              name="userselect"
                               onChange={this.onItemSelect}
                             >
-                              <option value="">Select Category</option>
-                              <option value="Food">Food</option>
-                              <option value="Sweet">Sweet</option>
+                              <option value="">Select User</option>
+                              <option value="User-1">User-1</option>
+                              <option value="User-2">User-2</option>
                               {/* {
                                                                         this.state.userrole.length > 0 ? this.state.userrole.map((data, index) =>
                                                                             <option key={data.id} value={data.id}>{data.name}</option>
@@ -185,7 +169,7 @@ class AddSubCategory extends React.Component<{ history: any }> {
                                                                     } */}
                             </CustomInput>
                             <div className="mb-4 text-danger">
-                              {this.state.selectcategoryerror}
+                              {this.state.userselecterror}
                             </div>
                           </FormGroup>
                         </Form>
@@ -194,52 +178,31 @@ class AddSubCategory extends React.Component<{ history: any }> {
                     <Row>
                       <Col xs="12" sm="12" md="6" lg="6" xl="6">
                         <FormGroup>
-                          <Label htmlFor="category_name">
-                            Sub Category Name
-                          </Label>
+                          <Label htmlFor="shopname">Shop Name</Label>
                           <Input
                             type="text"
-                            id="category_name"
-                            name="categoryname"
+                            id="shopname"
+                            name="shopname"
                             className="form-control"
                             // value={this.state.categoryname}
                             onChange={this.handleChangeEvent}
-                            placeholder="Enter your category name"
+                            placeholder="Enter your shop name"
                             required
                           />
                           <div className="mb-4 text-danger">
-                            {this.state.categorynameerror}
+                            {this.state.shopnameerror}
                           </div>
                         </FormGroup>
                       </Col>
                     </Row>
-                    <Row>
-                      <Col xs="12" sm="12" md="6" lg="6" xl="6">
-                        <FormGroup>
-                          <Label htmlFor="category_type">Category Type</Label>
-                          <Input
-                            type="text"
-                            id="category_type"
-                            name="categorytype"
-                            className="form-control"
-                            // value={this.state.categoryname}
-                            onChange={this.handleChangeEvent}
-                            placeholder="Enter your category type"
-                            required
-                          />
-                          <div className="mb-4 text-danger">
-                            {this.state.categorytypeerror}
-                          </div>
-                        </FormGroup>
-                      </Col>
-                    </Row>
+                   
 
                     <Button
                       type="button"
                       size="sm"
                       color="primary"
                       className="mb-2 mr-2 custom-button"
-                      // onClick={this.addSubCategory}
+                      // onClick={this.addCategory}
                     >
                       Save
                     </Button>
@@ -254,4 +217,4 @@ class AddSubCategory extends React.Component<{ history: any }> {
   }
 }
 
-export default AddSubCategory;
+export default AddShop;

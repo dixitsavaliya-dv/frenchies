@@ -17,7 +17,7 @@ import {
   // Table,
   Row,
 } from "reactstrap";
-import "./users.css";
+import "./delivery.css";
 import Admin from "../../../layouts/Admin";
 // import NavBar from "../../navbar/navbar";
 // import { MDBDataTable } from "mdbreact";
@@ -28,7 +28,7 @@ import Admin from "../../../layouts/Admin";
 const $ = require("jquery");
 $.DataTable = require("datatables.net");
 
-class Users extends React.Component<{ history: any }> {
+class DeliveryList extends React.Component<{ history: any }> {
   state = {
     count: 10,
     currentPage: 1,
@@ -93,11 +93,11 @@ class Users extends React.Component<{ history: any }> {
   }
 
   edituser() {
-    this.props.history.push("/edituser");
+    this.props.history.push("/edit-delivery");
   }
 
   viewuser() {
-    this.props.history.push("/viewuser");
+    this.props.history.push("/view-delivery");
   }
 
   onRoleSelect(event: any) {
@@ -117,7 +117,7 @@ class Users extends React.Component<{ history: any }> {
   deleteuser() {
     Swal.fire({
       title: "Are you sure?",
-      text: "You should be remove user!",
+      text: "You should be remove delivery!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Yes, delete it!",
@@ -125,11 +125,11 @@ class Users extends React.Component<{ history: any }> {
     }).then(async (result) => {
       if (result.value) {
         // var deleteCategory = await API.deleteCategory(id);
-        const msg = "User has been deleted";
+        const msg = "Delivery has been deleted";
         // utils.showSuccess(msg);
         // this.componentDidMount();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        const msg1 = "User is safe :";
+        const msg1 = "Delivery is safe :";
         // utils.showError(msg1);
       }
     });
@@ -235,11 +235,11 @@ class Users extends React.Component<{ history: any }> {
                   <CardHeader>
                     <Row>
                       <Col xs="12" sm="12" md="6" lg="6" xl="6">
-                        <CardTitle className="font">User Management</CardTitle>
+                        <CardTitle className="font">Delivery Management</CardTitle>
                       </Col>
                       <Col xs="12" sm="12" md="6" lg="6" xl="6">
                         <div className="right">
-                          <Link to="/adduser">
+                          <Link to="/add-delivery">
                             <Button
                               className="mb-2 mr-2 custom-button"
                               color="primary"
@@ -273,28 +273,6 @@ class Users extends React.Component<{ history: any }> {
                                                                     } */}
                           </CustomInput>
                         </Col>
-                        <Col xs="12" sm="12" md="6" lg="6" xl="6">
-                          <CustomInput
-                            type="select"
-                            id="onselect"
-                            name="role"
-                            onChange={this.onRoleSelect}
-                          >
-                            <option value="">Select UserRole:</option>
-                            <option id="1" value="User">
-                              User
-                            </option>
-                            <option id="2" value="Customer">
-                              Customer
-                            </option>
-
-                            {/* {
-                                                                        this.state.userrole.length > 0 ? this.state.userrole.map((data, index) =>
-                                                                            <option key={data.id} value={data.id}>{data.name}</option>
-                                                                        ) : ''
-                                                                    } */}
-                          </CustomInput>
-                        </Col>
                       </Row>
                     </div>
 
@@ -305,9 +283,10 @@ class Users extends React.Component<{ history: any }> {
                     >
                       <thead>
                         <tr>
-                          <th>Name</th>
-                          <th>Email</th>
-                          <th>PhoneNumber</th>
+                          <th>User Name</th>
+                          <th>Registration Number</th>
+                          <th>Area Name</th>
+                          <th>Shop Name</th>
                           <th style={{ textAlign: "center" }}>Status</th>
                           <th className="action">Action</th>
                         </tr>
@@ -315,8 +294,9 @@ class Users extends React.Component<{ history: any }> {
                       <tbody>
                         <tr>
                           <td>User-1</td>
-                          <td>user1@gmail.com</td>
-                          <td>7878787878</td>
+                          <td>4556565445</td>
+                          <td>Rajkot</td>
+                          <td>Abc Shop</td>
                           <td style={{ textAlign: "center" }}>
                             <i className="fa fa-check" />
                           </td>
@@ -338,9 +318,10 @@ class Users extends React.Component<{ history: any }> {
                           </td>
                         </tr>
                         <tr>
-                          <td>User-2</td>
-                          <td>user2@gmail.com</td>
-                          <td>7878787878</td>
+                        <td>User-2</td>
+                          <td>4556565445</td>
+                          <td>Ahmedabad</td>
+                          <td>Tgb Shop</td>
                           <td style={{ textAlign: "center" }}>
                             <i className="fa fa-check" />
                           </td>
@@ -352,7 +333,7 @@ class Users extends React.Component<{ history: any }> {
                               />
                               <i
                                 className="fas fa-edit"
-                                onClick={() => this.edituser}
+                                onClick={this.edituser}
                               />
                               <i
                                 className="far fa-trash-alt"
@@ -382,4 +363,4 @@ class Users extends React.Component<{ history: any }> {
   }
 }
 
-export default Users;
+export default DeliveryList;

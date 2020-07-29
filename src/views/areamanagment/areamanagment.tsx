@@ -18,17 +18,17 @@ import {
 // import NavBar from '../../navbar/navbar';
 // import API from '../../../service/service';
 // import Switch from "react-switch";
-import constant from '../../../constant/constant';
-import Admin from '../../../layouts/Admin';
+import constant from '../../constant/constant';
+import Admin from '../../layouts/Admin';
 // import { categoryCreateRequest,categoryUpdateRequest } from '../../../modelController/categoryModel';
 
-class AddCategory extends React.Component<{ history: any }> {
+class AreaManagement extends React.Component<{ history: any }> {
 
     state = {
-        categoryname: '',
-        categorynameerror: '',
-        categorytype:'',
-        categorytypeerror:''
+        name: '',
+        nameerror: '',
+        pincode:'',
+        pincodeerror:''
     }
 
     constructor(props: any) {
@@ -48,19 +48,19 @@ class AddCategory extends React.Component<{ history: any }> {
 
 
     validate() {
-        let categorynameerror = "";
-        let categorytypeerror = "";
+        let nameerror = "";
+        let pincodeerror = "";
 
-        if (!this.state.categoryname) {
-            categorynameerror = "please enter category name";
+        if (!this.state.name) {
+            nameerror = "please enter area name";
         }
 
-        if (!this.state.categorytype) {
-            categorytypeerror = "please enter category type";
+        if (!this.state.pincode) {
+            pincodeerror = "please enter area pincode";
         }
 
-        if (categorynameerror || categorytypeerror) {
-            this.setState({ categorynameerror, categorytypeerror });
+        if (nameerror || pincodeerror) {
+            this.setState({ nameerror, pincodeerror });
             return false;
         }
         return true;
@@ -77,8 +77,8 @@ class AddCategory extends React.Component<{ history: any }> {
     //     const isValid = this.validate();
     //     if (isValid) {
     //         this.setState({
-    //             categorynameerror: '',
-    //             selectedFileerror: ''
+    //             nameerror: '',
+    //             pincodeerror: ''
     //         })
     //         if (this.state.categoryname && this.state.selectedFile) {
     //             const obj : categoryCreateRequest = {
@@ -121,9 +121,9 @@ class AddCategory extends React.Component<{ history: any }> {
                                     <CardHeader>
                                         <Row>
                                             <Col xs="12" sm="6" md="9" lg="9" xl="9">
-                                                <h1 className="main_color">Add Category</h1>
+                                                <h1 className="main_color">Area Management</h1>
                                             </Col>
-                                            <Col xs="12" sm="6" md="3" lg="3" xl="3" style={{ textAlign: "right" }}>
+                                            {/* <Col xs="12" sm="6" md="3" lg="3" xl="3" style={{ textAlign: "right" }}>
                                                 <Link to="/category">
                                                     <Button
                                                         type="button"
@@ -134,7 +134,7 @@ class AddCategory extends React.Component<{ history: any }> {
                                                         Back
                                     </Button>
                                                 </Link>
-                                            </Col>
+                                            </Col> */}
                                         </Row>
 
                                     </CardHeader>
@@ -142,20 +142,20 @@ class AddCategory extends React.Component<{ history: any }> {
                                         <Row>
                                             <Col xs="12" sm="12" md="6" lg="6" xl="6">
                                                 <FormGroup>
-                                                    <Label htmlFor="category_name">Category Name</Label>
+                                                    <Label htmlFor="name">Name</Label>
                                                     <Input
                                                         type="text"
-                                                        id="category_name"
-                                                        name="categoryname"
+                                                        id="name"
+                                                        name="name"
                                                         className="form-control"
                                                         // value={this.state.categoryname}
                                                         onChange={this.handleChangeEvent}
 
-                                                        placeholder="Enter your category name"
+                                                        placeholder="Enter your area name"
                                                         required
                                                     />
                                                     <div className="mb-4 text-danger">
-                                                        {this.state.categorynameerror}
+                                                        {this.state.nameerror}
                                                     </div>
                                                 </FormGroup>
                                             </Col>
@@ -163,20 +163,20 @@ class AddCategory extends React.Component<{ history: any }> {
                                         <Row>
                                             <Col xs="12" sm="12" md="6" lg="6" xl="6">
                                                 <FormGroup>
-                                                    <Label htmlFor="category_type">Category Type</Label>
+                                                    <Label htmlFor="number">PinCode</Label>
                                                     <Input
-                                                        type="text"
-                                                        id="category_type"
-                                                        name="categorytype"
+                                                        type="number"
+                                                        id="number"
+                                                        name="pincode"
                                                         className="form-control"
                                                         // value={this.state.categoryname}
                                                         onChange={this.handleChangeEvent}
 
-                                                        placeholder="Enter your category type"
+                                                        placeholder="Enter your area pincode"
                                                         required
                                                     />
                                                     <div className="mb-4 text-danger">
-                                                        {this.state.categorytypeerror}
+                                                        {this.state.pincodeerror}
                                                     </div>
                                                 </FormGroup>
                                             </Col>
@@ -202,4 +202,4 @@ class AddCategory extends React.Component<{ history: any }> {
     }
 }
 
-export default AddCategory;
+export default AreaManagement;

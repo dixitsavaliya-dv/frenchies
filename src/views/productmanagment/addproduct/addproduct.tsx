@@ -12,7 +12,7 @@ import {
   Label,
   Row,
 } from "reactstrap";
-import "./adduser.css";
+import "./addproduct.css";
 
 import constant from "../../../constant/constant";
 // import {
@@ -22,27 +22,21 @@ import constant from "../../../constant/constant";
 import { any } from "prop-types";
 import Admin from "../../../layouts/Admin";
 
-class AddUser extends React.Component<{ history: any }> {
+class AddProduct extends React.Component<{ history: any }> {
   state = {
-    selectedFile: new Array(),
-    firstname: "",
-    firstnameerror: "",
-    lastname: "",
-    lastnameerror: "",
-    email: "",
-    emailerror: "",
-    mobilenumber: 0,
-    mobilenumbererror: "",
-    password: "",
-    passworderror: "",
+    name: "",
+    nameerror: "",
+    description: "",
+    descriptionerror: "",
+    price: "",
+    priceerror: "",
+    shopid: 0,
+    shopiderror: "",
+    categoryid: "",
+    categoryiderror: "",
     checked: false,
-    selectedFileerror: "",
-    onItemSelect: "",
-    onItemSelecterror: "",
-    roleid:0,
-    userrole:[],
-    updateTrue:false,
-    file:null
+    subcategoryid: "",
+    subcategoryiderror: ""
   };
 
   constructor(props: any) {
@@ -50,7 +44,8 @@ class AddUser extends React.Component<{ history: any }> {
     // this.Profile = this.Profile.bind(this);
     this.handleChangeEvent = this.handleChangeEvent.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.removeIcon = this.removeIcon.bind(this);
+    this.onMainItemSelect = this.onMainItemSelect.bind(this);
+    this.onSubItemSelect =  this.onSubItemSelect.bind(this);
     // this.addUser = this.addUser.bind(this);
     // this.editUser = this.editUser.bind(this);
     this.onItemSelect = this.onItemSelect.bind(this);
@@ -69,22 +64,6 @@ class AddUser extends React.Component<{ history: any }> {
     // console.log("getprofile",getProfile);
   }
 
-  onChangeHandler(event: any) {
-    // let data = new FormData();
-    // data.append('file_name', event.target.files[0]);
-    // console.log("event",event.target.files[0].name);
-    
-    let fileArray = [];
-    fileArray.push(event.target.files[0]);
-    this.setState({
-      selectedFile: this.state.selectedFile = fileArray,
-    });
-    if(this.state.selectedFile.length == 1) {
-      this.setState({
-        file: this.state.file = this.state.selectedFile[0].name,
-      });
-    }
-  }
 
   // async getUserRole() {
   //     const getUserRole = await RoleAPI.getUserRole();
@@ -101,65 +80,52 @@ class AddUser extends React.Component<{ history: any }> {
   // }
 
   validate() {
-    let firstnameerror = "";
-    let lastnameerror = "";
-    let emailerror = "";
-    let mobilenumbererror = "";
-    let passworderror = "";
-    let selectedFileerror = "";
-    let onItemSelecterror = "";
+    let nameerror = "";
+    let descriptionerror = "";
+    let priceerror = "";
+    let shopiderror = "";
+    let categoryiderror = "";
+    let subcategoryiderror = "";
 
-    if (!this.state.firstname) {
-      firstnameerror = "please enter firstname";
+    if (!this.state.name) {
+      nameerror = "please enter product name";
     }
 
-    if (!this.state.lastname) {
-      lastnameerror = "please enter lastname";
+    if (!this.state.description) {
+        descriptionerror = "please enter description";
     }
 
-    const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-    if (!this.state.email) {
-      emailerror = "please enter email";
-    } else if (!reg.test(this.state.email)) {
-      emailerror = "please enter valid email";
+    if (!this.state.price) {
+        priceerror = "please enter price";
     }
 
-    const mobileRegex:any = /^([+]\d{2})?\d{10}$/;
-    if (!this.state.mobilenumber) {
-      mobilenumbererror = "please enter mobile number";
-    } else if (!mobileRegex.test(this.state.mobilenumber)){
-      mobilenumbererror = "please enter valid mobile number";
+    if (!this.state.shopid) {
+        shopiderror = "please select shop";
     }
 
-    if (!this.state.password) {
-      passworderror = "please enter password";
+    if (!this.state.categoryid) {
+        categoryiderror = "please select category";
     }
 
-    if (!this.state.selectedFile) {
-      selectedFileerror = "please select file";
-    }
-
-    if (!this.state.onItemSelect) {
-      onItemSelecterror = "please select role";
+    if (!this.state.subcategoryid) {
+        subcategoryiderror = "please select sub category";
     }
 
     if (
-      firstnameerror ||
-      lastnameerror ||
-      emailerror ||
-      mobilenumbererror ||
-      passworderror ||
-      selectedFileerror ||
-      onItemSelecterror
+      nameerror ||
+      descriptionerror ||
+      priceerror ||
+      shopiderror ||
+      categoryiderror ||
+      subcategoryiderror
     ) {
       this.setState({
-        firstnameerror,
-        lastnameerror,
-        emailerror,
-        mobilenumbererror,
-        passworderror,
-        selectedFileerror,
-        onItemSelecterror,
+        nameerror,
+        descriptionerror,
+        priceerror,
+        shopiderror,
+        categoryiderror,
+        subcategoryiderror
       });
       return false;
     }
@@ -167,10 +133,26 @@ class AddUser extends React.Component<{ history: any }> {
   }
 
   onItemSelect(event: any) {
-    this.setState({
-      roleid: this.state.roleid = event.target.options[event.target.selectedIndex].value,
-      onItemSelect:this.state.onItemSelect = event.target.options[event.target.selectedIndex].innerHTML
-    });
+    // this.setState({
+    //   roleid: this.state.roleid = event.target.options[event.target.selectedIndex].value,
+    //   onItemSelect:this.state.onItemSelect = event.target.options[event.target.selectedIndex].innerHTML
+    // });
+  }
+
+  
+  onMainItemSelect(event: any) {
+    // this.setState({
+    //   roleid: this.state.roleid = event.target.options[event.target.selectedIndex].value,
+    //   onItemSelect:this.state.onItemSelect = event.target.options[event.target.selectedIndex].innerHTML
+    // });
+  }
+
+  
+  onSubItemSelect(event: any) {
+    // this.setState({
+    //   roleid: this.state.roleid = event.target.options[event.target.selectedIndex].value,
+    //   onItemSelect:this.state.onItemSelect = event.target.options[event.target.selectedIndex].innerHTML
+    // });
   }
 
   handleChangeEvent(event: any) {
@@ -277,15 +259,6 @@ class AddUser extends React.Component<{ history: any }> {
   //   }
   // }
 
-  removeIcon() {
-    // const obj = {
-    //     id: this.props.auth.auth_data.id,
-    //     image_path: data
-    // }
-    this.setState({
-      selectedFile: this.state.file = null,
-    });
-  }
 
   render() {
     return (
@@ -298,7 +271,7 @@ class AddUser extends React.Component<{ history: any }> {
                   <CardHeader>
                     <Row>
                       <Col xs="12" sm="6" md="9" lg="9" xl="9">
-                        <h1 className="main_color">Add User</h1>
+                        <h1 className="main_color">Add Product</h1>
                       </Col>
                       <Col
                         xs="12"
@@ -308,7 +281,7 @@ class AddUser extends React.Component<{ history: any }> {
                         xl="3"
                         style={{ textAlign: "right" }}
                       >
-                        <Link to="/users">
+                        <Link to="/product">
                           <Button
                             type="button"
                             size="sm"
@@ -323,147 +296,139 @@ class AddUser extends React.Component<{ history: any }> {
                   </CardHeader>
                   <CardBody>
                     <Row>
-                      <Col xs="12" sm="12" md="6" lg="6" xl="6">
+                      <Col xs="12" sm="12" md="4" lg="4" xl="4">
                         <FormGroup>
-                          <Label htmlFor="first_name">First Name</Label>
+                          <Label htmlFor="name">Name</Label>
                           <Input
                             type="text"
-                            id="first_name"
-                            name="firstname"
+                            id="name"
+                            name="name"
                             className="form-control"
                             // value={this.state.firstname}
                             onChange={this.handleChangeEvent}
-                            placeholder="Enter your first name"
+                            placeholder="Enter your name"
                             required
                           />
                           <div className="mb-4 text-danger">
-                            {this.state.firstnameerror}
+                            {this.state.nameerror}
                           </div>
                         </FormGroup>
                       </Col>
-                      <Col xs="12" sm="12" md="6" lg="6" xl="6">
+                      <Col xs="12" sm="12" md="4" lg="4" xl="4">
                       <FormGroup>
-                          <Label htmlFor="email">E-Mail</Label>
+                          <Label htmlFor="description">Description</Label>
                           <Input
-                            type="email"
-                            id="email"
-                            name="email"
+                            type="textarea"
+                            id="description"
+                            name="description"
                             className="form-control"
                             // value={this.state.email}
                             onChange={this.handleChangeEvent}
-                            placeholder="Enter your email"
+                            placeholder="Enter your description"
                             required
                           />
                           <div className="mb-4 text-danger">
-                            {this.state.emailerror}
+                            {this.state.descriptionerror}
                           </div>
                         </FormGroup>
                        </Col>
-                    </Row>
-                    <Row>
-                      <Col xs="12" sm="12" md="6" lg="6" xl="6">
+                      <Col xs="12" sm="12" md="4" lg="4" xl="4">
                         <FormGroup>
-                          <Label htmlFor="mobile_no">Mobile Number</Label>
+                          <Label htmlFor="price">Price</Label>
                           <Input
                             type="number"
-                            id="mobile_no"
-                            name="mobilenumber"
+                            id="price"
+                            name="price"
                             className="form-control"
                             // value={this.state.mobilenumber}
                             onChange={this.handleChangeEvent}
-                            placeholder="Enter your mobile number"
+                            placeholder="Enter your price"
                           />
                           <div className="mb-4 text-danger">
-                            {this.state.mobilenumbererror}
+                            {this.state.priceerror}
                           </div>
                         </FormGroup>
                         
                       </Col>
-                      <Col xs="12" sm="12" md="6" lg="6" xl="6">
-                        <Label htmlFor="password">Password</Label>
-                        <Input
-                          type="password"
-                          id="password"
-                          name="password"
-                          className="form-control"
-                          // value={this.state.password}
-                          onChange={this.handleChangeEvent}
-                          placeholder="Enter your password"
-                        />
-                        <div className="mb-4 text-danger">
-                          {this.state.passworderror}
-                        </div>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col xs="12" sm="12" md="6" lg="6" xl="6">
+                      </Row>
+                      <Row>
+               
+                      <Col xs="12" sm="12" md="4" lg="4" xl="4">
                         <FormGroup>
                           <Label for="exampleCustomSelect">
-                            Select Role:
+                            Select Shop:
                           </Label>
                           <Input
                             type="select"
-                            name="onItemSelect"
+                            name="shopid"
                             onChange={this.onItemSelect}
                           >
-                            {/* <option value="">Select UserRole:</option>
-                            <option id="1" value="User">User</option>
-                            <option id="2" value="Customer">Customer</option> */}
-                            <option value="">Select UserRole:</option>
-                            {
+                            <option value="">Select Shop:</option>
+                            <option id="1" value="Shop-1">Shop-1</option>
+                            <option id="2" value="Shop-2">Shop-2</option>
+                            {/* {
                               this.state.userrole.length > 0 ? this.state.userrole.map((data:any, index:any) =>
                                   <option key={data.roleId} value={data.roleId}>{data.role}</option>
                               ) : ''
-                          }
+                          } */}
                           </Input>
                           <div className="mb-4 text-danger">
-                          {this.state.onItemSelecterror}
+                          {this.state.shopiderror}
                         </div>
                         </FormGroup>
                       </Col>
-                    </Row>
-                    <Row>
-                      <Col xs="12" sm="12" md="6" lg="6" xl="6">
-                        <FormGroup className="img-upload">
-                          {this.state.file != null ? (
-                            <div className="img-size">
-                              {this.state.file != null ? (
-                                <div>
-                                  <img
-                                    className="picture"
-                                    // src={constant.filepath + this.state.file}
-                                  />
-                                  <i
-                                    className="fa fa-times cursor"
-                                    onClick={() => this.removeIcon()}
-                                  ></i>
-                                </div>
-                              ) : null}
-                            </div>
-                          ) : (
-                            <div className="">
-                              <p style={{ fontSize: "16px",color: '#aaaaaa'}}>User Image</p>
-                              <Label className="imag" for="file-input">
-                                <i
-                                  className="fa fa-upload fa-lg"
-                                  style={{ color: "#20a8d8" }}
-                                ></i>
-                              </Label>
-                              <Input
-                                id="file-input"
-                                type="file"
-                                className="form-control"
-                                name="file"
-                                onChange={this.onChangeHandler.bind(this)}
-                              />
-                            </div>
-                          )}
-                          <div className="text-danger">
-                            {this.state.selectedFileerror}
-                          </div>
+                
+                      <Col xs="12" sm="12" md="4" lg="4" xl="4">
+                        <FormGroup>
+                          <Label for="exampleCustomSelect">
+                            Select Category:
+                          </Label>
+                          <Input
+                            type="select"
+                            name="categoryid"
+                            onChange={this.onMainItemSelect}
+                          >
+                         
+                            <option value="">Select Category:</option>
+                            <option id="1" value="Food">Food</option>
+                            <option id="2" value="Snacks">Snacks</option>
+                            {/* {
+                              this.state.userrole.length > 0 ? this.state.userrole.map((data:any, index:any) =>
+                                  <option key={data.roleId} value={data.roleId}>{data.role}</option>
+                              ) : ''
+                          } */}
+                          </Input>
+                          <div className="mb-4 text-danger">
+                          {this.state.categoryiderror}
+                        </div>
                         </FormGroup>
                       </Col>
-                      
+
+                      <Col xs="12" sm="12" md="4" lg="4" xl="4">
+                        <FormGroup>
+                          <Label for="exampleCustomSelect">
+                            Select SubCategory:
+                          </Label>
+                          <Input
+                            type="select"
+                            name="subcategoryid"
+                            onChange={this.onSubItemSelect}
+                          >
+                            {/* <option value="">Select UserRole:</option> */}
+                            <option value="">Select SubCategory:</option>
+                            <option id="1" value="Fruits">Fruits</option>
+                            <option id="2" value="Pizza">Pizza</option>
+                            {/* {
+                              this.state.userrole.length > 0 ? this.state.userrole.map((data:any, index:any) =>
+                                  <option key={data.roleId} value={data.roleId}>{data.role}</option>
+                              ) : ''
+                          } */}
+                          </Input>
+                          <div className="mb-4 text-danger">
+                          {this.state.subcategoryiderror}
+                        </div>
+                        </FormGroup>
+                      </Col>
                     </Row>
                     <Button
                       type="button"
@@ -485,4 +450,4 @@ class AddUser extends React.Component<{ history: any }> {
   }
 }
 
-export default AddUser;
+export default AddProduct;

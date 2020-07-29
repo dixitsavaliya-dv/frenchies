@@ -27,7 +27,7 @@ import Admin from '../../../layouts/Admin';
 const $ = require('jquery');
 $.DataTable = require('datatables.net')
 
-class Category extends React.Component<{ history: any }> {
+class ShopVerification extends React.Component<{ history: any }> {
 
     state = {
         selectedFile: null,
@@ -114,17 +114,17 @@ class Category extends React.Component<{ history: any }> {
     }
 
     editCategory() {
-        this.props.history.push('/editcategory');
+        this.props.history.push('/edit-shop-verification');
     }
 
     viewCategory() {
-        this.props.history.push('/viewcategory');
+        this.props.history.push('/view-shop-verification');
     }
 
     deleteCategory() {
         Swal.fire({
             title: 'Are you sure?',
-            text: 'You should be remove category!',
+            text: 'You should be remove shop verification!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Yes, delete it!',
@@ -132,11 +132,11 @@ class Category extends React.Component<{ history: any }> {
         }).then(async (result) => {
             if (result.value) {
                 // var deleteCategory = await API.deleteCategory(id);
-                const msg = "Your Category has been deleted";
+                const msg = "Your shop verification has been deleted";
                 // utils.showSuccess(msg);
                 // this.componentDidMount();
             } else if (result.dismiss === Swal.DismissReason.cancel) {
-                const msg1 = "Category is safe :";
+                const msg1 = "shop verification is safe :";
                 // utils.showError(msg1);
             }
         })
@@ -215,12 +215,12 @@ class Category extends React.Component<{ history: any }> {
                                                 <CardTitle
                                                     className="font"
                                                 >
-                                                    Category Management
+                                                    Shop Verification Management
                                         </CardTitle>
                                             </Col>
                                             <Col xs="12" sm="12" md="6" lg="6" xl="6">
                                                 <div className="right">
-                                                    <Link to="/addcategory">
+                                                    <Link to="/add-shop-verification">
                                                         <Button
                                                             className="mb-2 mr-2 custom-button"
                                                             color="primary"
@@ -258,16 +258,16 @@ class Category extends React.Component<{ history: any }> {
                                         <table id="dtBasicExample" className="table table-striped table-bordered table-sm" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th>Category Name</th>
-                                                    <th>Category Type</th>
+                                                    <th>Shop Name</th>
+                                                    <th>Verification Status</th>
                                                     <th style={{ textAlign: "center" }}>Status</th>
                                                     <th className="action">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>FOOD</td>
-                                                    <td>FOOD Type</td>
+                                                    <td>Abc Shop</td>
+                                                    <td>pending</td>
                                                     <td style={{ textAlign: "center" }}><i className="fa fa-check"></i></td>
                                                     <td className="action">
                                                         <span className="padding">
@@ -278,8 +278,8 @@ class Category extends React.Component<{ history: any }> {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Vegitarain</td>
-                                                    <td>Vegitarain Type</td>
+                                                <td>Abc Shop</td>
+                                                    <td>pending</td>
                                                     <td style={{ textAlign: "center" }}><i className="fa fa-check"></i></td>
                                                     <td className="action">
                                                         <i className="fa fa-eye" onClick={this.viewCategory}></i>
@@ -309,4 +309,4 @@ class Category extends React.Component<{ history: any }> {
     }
 }
 
-export default Category;
+export default ShopVerification;

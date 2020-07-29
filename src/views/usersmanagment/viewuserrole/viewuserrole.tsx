@@ -40,7 +40,7 @@ class ViewUserRole extends React.Component<{ history: any }> {
                                                 <h1 className="main_color">View Role</h1>
                                             </Col>
                                             <Col xs="12" sm="6" md="3" lg="3" xl="3" style={{ textAlign: "right" }}>
-                                                <Link to="/userrole">
+                                                <Link to="/role">
                                                     <Button
                                                         type="button"
                                                         size="sm"

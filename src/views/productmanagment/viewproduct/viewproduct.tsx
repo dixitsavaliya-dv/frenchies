@@ -19,7 +19,7 @@ import {
 import constant from '../../../constant/constant';
 import Admin from '../../../layouts/Admin';
 
-class ViewUser extends React.Component<{ history: any }> {
+class ViewProduct extends React.Component<{ history: any }> {
 
     constructor(props: any) {
         super(props);
@@ -44,10 +44,10 @@ class ViewUser extends React.Component<{ history: any }> {
                                     <CardHeader>
                                         <Row>
                                             <Col xs="12" sm="6" md="9" lg="9" xl="9">
-                                                <h1 className="main_color">View User Details</h1>
+                                                <h1 className="main_color">View Product Details</h1>
                                             </Col>
                                             <Col xs="12" sm="6" md="3" lg="3" xl="3" style={{ textAlign: "right" }}>
-                                                <Link to="/users">
+                                                <Link to="/product">
                                                     <Button
                                                         type="button"
                                                         size="sm"
@@ -63,39 +63,44 @@ class ViewUser extends React.Component<{ history: any }> {
                                     </CardHeader>
                                     <CardBody>
                                         <Row>
-                                            <Col xs="12" sm="12" md="6" lg="6" xl="6">
+                                            <Col xs="12" sm="12" md="4" lg="4" xl="4">
                                                 <FormGroup>
                                                     <Label htmlFor="first_name"><b>Name</b></Label>
-                                                    <p>User-1</p>
+                                                    <p>Product-1</p>
+                                                </FormGroup>
+                                            </Col>
+                                            <Col xs="12" sm="12" md="4" lg="4" xl="4">
+                                                <FormGroup>
+                                                    <Label htmlFor="email"><b>Description</b></Label>
+                                                    <p>Desc.....</p>
+
+                                                </FormGroup>
+                                            </Col>
+                                            <Col xs="12" sm="12" md="4" lg="4" xl="4">
+                                                <FormGroup>
+                                                    <Label htmlFor="mobile_no"><b>Price</b></Label>
+                                                    <p>1200</p>
                                                 </FormGroup>
                                             </Col>
                                         </Row>
                                         <Row>
-                                            <Col xs="12" sm="12" md="6" lg="6" xl="6">
+                                            <Col xs="12" sm="12" md="4" lg="4" xl="4">
                                                 <FormGroup>
-                                                    <Label htmlFor="email"><b>E-Mail</b></Label>
-                                                    <p>User@gmail.com</p>
+                                                    <Label htmlFor="first_name"><b>ShopName</b></Label>
+                                                    <p>Shop-1</p>
+                                                </FormGroup>
+                                            </Col>
+                                            <Col xs="12" sm="12" md="4" lg="4" xl="4">
+                                                <FormGroup>
+                                                    <Label htmlFor="email"><b>Category</b></Label>
+                                                    <p>Category-1</p>
 
                                                 </FormGroup>
                                             </Col>
-                                            <Col xs="12" sm="12" md="6" lg="6" xl="6">
+                                            <Col xs="12" sm="12" md="4" lg="4" xl="4">
                                                 <FormGroup>
-                                                    <Label htmlFor="mobile_no"><b>Mobile Number</b></Label>
-                                                    <p>9797979797</p>
-
-                                                </FormGroup>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            {/* <Col xs="12" sm="12" md="6" lg="6" xl="6">
-                                                <Label htmlFor="password">Password</Label>
-                                                <p></p>
-                                            </Col> */}
-                                            <Col xs="12" sm="12" md="6" lg="6" xl="6">
-                                                <FormGroup className="img-upload">
-                                                    <p style={{ fontSize: '16px' }}><b>User Image</b></p>
-                                                    <p><i className="fa fa-user"></i></p>
-
+                                                    <Label htmlFor="mobile_no"><b>SubCategory</b></Label>
+                                                    <p>SubCategory-1</p>
                                                 </FormGroup>
                                             </Col>
                                         </Row>
@@ -110,4 +115,4 @@ class ViewUser extends React.Component<{ history: any }> {
     }
 }
 
-export default ViewUser;
+export default ViewProduct;

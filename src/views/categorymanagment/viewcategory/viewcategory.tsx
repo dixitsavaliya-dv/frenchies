@@ -66,8 +66,8 @@ class ViewCategory extends React.Component<{ history: any }> {
                                             </Col>
                                             <Col xs="12" sm="12" md="6" lg="6" xl="6">
                                                 <FormGroup className="img-upload">
-                                                <p style={{fontSize:'16px'}}><b>Category Image</b></p>
-                                                <p><i className="fa fa-user"></i></p>
+                                                <Label htmlFor="category_name"><b>Category Type</b></Label>
+                                                <p>FOOD Type</p>
                                                 </FormGroup>
                                             </Col>
                                         </Row>

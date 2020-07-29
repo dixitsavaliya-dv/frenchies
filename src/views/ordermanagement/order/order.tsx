@@ -17,7 +17,7 @@ import {
   // Table,
   Row,
 } from "reactstrap";
-import "./users.css";
+import "./order.css";
 import Admin from "../../../layouts/Admin";
 // import NavBar from "../../navbar/navbar";
 // import { MDBDataTable } from "mdbreact";
@@ -28,7 +28,7 @@ import Admin from "../../../layouts/Admin";
 const $ = require("jquery");
 $.DataTable = require("datatables.net");
 
-class Users extends React.Component<{ history: any }> {
+class Orders extends React.Component<{ history: any }> {
   state = {
     count: 10,
     currentPage: 1,
@@ -97,7 +97,7 @@ class Users extends React.Component<{ history: any }> {
   }
 
   viewuser() {
-    this.props.history.push("/viewuser");
+    this.props.history.push("/view-order-details");
   }
 
   onRoleSelect(event: any) {
@@ -235,9 +235,9 @@ class Users extends React.Component<{ history: any }> {
                   <CardHeader>
                     <Row>
                       <Col xs="12" sm="12" md="6" lg="6" xl="6">
-                        <CardTitle className="font">User Management</CardTitle>
+                        <CardTitle className="font">Order Management</CardTitle>
                       </Col>
-                      <Col xs="12" sm="12" md="6" lg="6" xl="6">
+                      {/* <Col xs="12" sm="12" md="6" lg="6" xl="6">
                         <div className="right">
                           <Link to="/adduser">
                             <Button
@@ -248,7 +248,7 @@ class Users extends React.Component<{ history: any }> {
                             </Button>
                           </Link>
                         </div>
-                      </Col>
+                      </Col> */}
                     </Row>
                   </CardHeader>
                   <CardBody>
@@ -273,28 +273,6 @@ class Users extends React.Component<{ history: any }> {
                                                                     } */}
                           </CustomInput>
                         </Col>
-                        <Col xs="12" sm="12" md="6" lg="6" xl="6">
-                          <CustomInput
-                            type="select"
-                            id="onselect"
-                            name="role"
-                            onChange={this.onRoleSelect}
-                          >
-                            <option value="">Select UserRole:</option>
-                            <option id="1" value="User">
-                              User
-                            </option>
-                            <option id="2" value="Customer">
-                              Customer
-                            </option>
-
-                            {/* {
-                                                                        this.state.userrole.length > 0 ? this.state.userrole.map((data, index) =>
-                                                                            <option key={data.id} value={data.id}>{data.name}</option>
-                                                                        ) : ''
-                                                                    } */}
-                          </CustomInput>
-                        </Col>
                       </Row>
                     </div>
 
@@ -305,59 +283,65 @@ class Users extends React.Component<{ history: any }> {
                     >
                       <thead>
                         <tr>
-                          <th>Name</th>
-                          <th>Email</th>
-                          <th>PhoneNumber</th>
-                          <th style={{ textAlign: "center" }}>Status</th>
+                          <th>Customer Name</th>
+                          <th>Order Number</th>
+                          <th>Product Name</th>
+                          <th>Delivery Boy Name</th>
+                          <th>Order Status</th>
+                          {/* <th style={{ textAlign: "center" }}>Status</th> */}
                           <th className="action">Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>User-1</td>
-                          <td>user1@gmail.com</td>
-                          <td>7878787878</td>
-                          <td style={{ textAlign: "center" }}>
+                          <td>Customer-1</td>
+                          <td>4556565445</td>
+                          <td>Electronic</td>
+                          <td>Delivery Boy-1</td>
+                          <td>Order Placed</td>
+                          {/* <td style={{ textAlign: "center" }}>
                             <i className="fa fa-check" />
-                          </td>
+                          </td> */}
                           <td className="action">
                             <span className="padding">
                               <i
                                 className="fa fa-eye"
                                 onClick={this.viewuser}
                               />
-                              <i
+                              {/* <i
                                 className="fas fa-edit"
                                 onClick={this.edituser}
                               />
                               <i
                                 className="far fa-trash-alt"
                                 onClick={this.deleteuser}
-                              />
+                              /> */}
                             </span>
                           </td>
                         </tr>
                         <tr>
-                          <td>User-2</td>
-                          <td>user2@gmail.com</td>
-                          <td>7878787878</td>
-                          <td style={{ textAlign: "center" }}>
+                        <td>Customer-2</td>
+                          <td>4556565445</td>
+                          <td>Fashion</td>
+                          <td>Delivery Boy-2</td>
+                          <td>Order Placed</td>
+                          {/* <td style={{ textAlign: "center" }}>
                             <i className="fa fa-check" />
-                          </td>
+                          </td> */}
                           <td className="action">
                             <span className="padding">
                               <i
                                 className="fa fa-eye"
                                 onClick={this.viewuser}
                               />
-                              <i
+                              {/* <i
                                 className="fas fa-edit"
                                 onClick={() => this.edituser}
                               />
                               <i
                                 className="far fa-trash-alt"
                                 onClick={this.deleteuser}
-                              />
+                              /> */}
                             </span>
                           </td>
                         </tr>
@@ -382,4 +366,4 @@ class Users extends React.Component<{ history: any }> {
   }
 }
 
-export default Users;
+export default Orders;

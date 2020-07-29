@@ -6,6 +6,8 @@ import {
     Card,
     CardBody,
     CardHeader,
+    CardTitle,
+    Table,
     Input,
     Col,
     FormGroup,
@@ -19,21 +21,14 @@ import {
 import constant from '../../../constant/constant';
 import Admin from '../../../layouts/Admin';
 
-class ViewUser extends React.Component<{ history: any }> {
-
-    constructor(props: any) {
-        super(props);
-    }
+class ViewShop extends React.Component<{ history: any }> {
 
     async componentDidMount() {
-        // document.title = constant.viewUserTitle + utils.getAppName();
-        // const getProfile = await API.getProfile();
-        // console.log("getprofile",getProfile);
+        // document.title = constant.viewCategoryTitle + utils.getAppName();
+    
     }
 
-
     render() {
-
         return (
             <>
                 <Admin>
@@ -44,10 +39,10 @@ class ViewUser extends React.Component<{ history: any }> {
                                     <CardHeader>
                                         <Row>
                                             <Col xs="12" sm="6" md="9" lg="9" xl="9">
-                                                <h1 className="main_color">View User Details</h1>
+                                                <h1 className="main_color">View Shop Details</h1>
                                             </Col>
                                             <Col xs="12" sm="6" md="3" lg="3" xl="3" style={{ textAlign: "right" }}>
-                                                <Link to="/users">
+                                                <Link to="/shop">
                                                     <Button
                                                         type="button"
                                                         size="sm"
@@ -55,7 +50,7 @@ class ViewUser extends React.Component<{ history: any }> {
                                                         className="mb-2 mr-2 custom-button"
                                                     >
                                                         Back
-                                        </Button>
+                                    </Button>
                                                 </Link>
                                             </Col>
                                         </Row>
@@ -65,37 +60,14 @@ class ViewUser extends React.Component<{ history: any }> {
                                         <Row>
                                             <Col xs="12" sm="12" md="6" lg="6" xl="6">
                                                 <FormGroup>
-                                                    <Label htmlFor="first_name"><b>Name</b></Label>
+                                                    <Label htmlFor="category_name"><b>User Name</b></Label>
                                                     <p>User-1</p>
                                                 </FormGroup>
                                             </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col xs="12" sm="12" md="6" lg="6" xl="6">
-                                                <FormGroup>
-                                                    <Label htmlFor="email"><b>E-Mail</b></Label>
-                                                    <p>User@gmail.com</p>
-
-                                                </FormGroup>
-                                            </Col>
-                                            <Col xs="12" sm="12" md="6" lg="6" xl="6">
-                                                <FormGroup>
-                                                    <Label htmlFor="mobile_no"><b>Mobile Number</b></Label>
-                                                    <p>9797979797</p>
-
-                                                </FormGroup>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            {/* <Col xs="12" sm="12" md="6" lg="6" xl="6">
-                                                <Label htmlFor="password">Password</Label>
-                                                <p></p>
-                                            </Col> */}
                                             <Col xs="12" sm="12" md="6" lg="6" xl="6">
                                                 <FormGroup className="img-upload">
-                                                    <p style={{ fontSize: '16px' }}><b>User Image</b></p>
-                                                    <p><i className="fa fa-user"></i></p>
-
+                                                <Label htmlFor="category_name"><b>Shop Name</b></Label>
+                                                <p>Abc Shop</p>
                                                 </FormGroup>
                                             </Col>
                                         </Row>
@@ -110,4 +82,4 @@ class ViewUser extends React.Component<{ history: any }> {
     }
 }
 
-export default ViewUser;
+export default ViewShop;

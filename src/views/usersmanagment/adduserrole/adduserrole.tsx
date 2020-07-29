@@ -143,7 +143,7 @@ class AddUserRole extends React.Component<{ history: any }> {
                         xl="3"
                         style={{ textAlign: "right" }}
                       >
-                        <Link to="/userrole">
+                        <Link to="/role">
                           <Button
                             type="button"
                             size="sm"
