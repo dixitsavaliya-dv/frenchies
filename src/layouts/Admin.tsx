@@ -285,11 +285,43 @@ class Admin extends React.Component {
         <header className="header">
           <i className="fas fa-bars header__menu" onClick={this.open} />
           <div className="header__search">
-            {/* <input className="header__input" placeholder="Search..." /> */}
+            <input className="header__input" placeholder="Search..." />
           </div>
           <div className="header__avatar" onClick={this.showMenu}>
-            <div className="dropdown">
-              {this.state.isOpen === true ? (
+            {
+              this.state.isOpen === false ? (
+                <div className="dropdown">
+                {/* <ul className="dropdown__list">
+                  <li className="dropdown__list-item">
+                    <span className="dropdown__icon">
+                      <i className="far fa-user" />
+                    </span>
+                    <Link to="/user">
+                      <span className="dropdown__title">My Profile</span>
+                    </Link>
+                  </li>
+                  <li className="dropdown__list-item">
+                    <span className="dropdown__icon">
+                      <i className="fas fa-clipboard-list" />
+                    </span>
+                    <Link to="/change-password">
+                      <span className="dropdown__title">Change Password</span>
+                    </Link>
+                  </li>
+                  <li className="dropdown__list-item">
+                    <span className="dropdown__icon">
+                      <i className="fas fa-sign-out-alt" />
+                    </span>
+
+                    <span className="dropdown__title" onClick={this.logout}>
+                      Logout
+                    </span>
+                  </li>
+                </ul> */}
+            </div>
+              ) : (
+
+            <div className="dropdown dropdown--active">
                 <ul className="dropdown__list">
                   <li className="dropdown__list-item">
                     <span className="dropdown__icon">
@@ -317,10 +349,10 @@ class Admin extends React.Component {
                     </span>
                   </li>
                 </ul>
-              ) : (
-                ""
-              )}
+          
             </div>
+              )
+            }
           </div>
         </header>
 
