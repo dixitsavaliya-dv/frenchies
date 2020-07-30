@@ -32,6 +32,22 @@ import ViewOrder from './views/ordermanagement/vieworder/vieworder';
 import DeliveryList from './views/deliverymanagement/delivery/delivery';
 import AddDelivery from './views/deliverymanagement/adddelivery/adddelivery';
 import ViewDelivery from './views/deliverymanagement/viewdelivery/viewdelivery';
+import DeliveryVerification from './views/deliverymanagement/deliveryverification/deliveryverification';
+import AddDeliveryVerification from './views/deliverymanagement/addverification/addverification';
+import ViewDeliveryVerification from './views/deliverymanagement/viewverification/viewverification';
+import Frenchise from './views/franchisemanagment/franchise/franchise';
+import AddFrenchise from './views/franchisemanagment/addfrenchise/addfrenchise';
+import ViewFrenchise from './views/franchisemanagment/viewfrenchise/viewfrenchise';
+import ListPaymentDetail from './views/paymentmanagment/payment/payment';
+import ViewPayment from './views/paymentmanagment/viewpayment/viewpayment';
+import ListPayOutDetail from './views/paymentmanagment/payout/payout';
+import ViewPayout from './views/paymentmanagment/viewpayout/viewpayout';
+import Rating from './views/ratingmanagment/rating/rating';
+import ViewRating from './views/ratingmanagment/viewrating/viewrating';
+import RatingData from './views/ratingmanagment/ratingdata/ratingddata';
+import ViewRatingData from './views/ratingmanagment/viewratingdata/viewratingdata';
+import RatingMaster from './views/ratingmanagment/ratingmaster/ratingmaster';
+import ViewRatingMaster from './views/ratingmanagment/viewratingmaster/viewratingmaster';
 const hist = createBrowserHistory();
 
 class Main extends React.Component {
@@ -78,6 +94,24 @@ class Main extends React.Component {
             <Route exact path='/add-delivery' render={(props: any) => <AddDelivery {...props} />} />
             <Route exact path='/edit-delivery' render={(props: any) => <AddDelivery {...props} />} />
             <Route exact path='/view-delivery' render={(props: any) => <ViewDelivery {...props} />} />
+            <Route exact path='/delivery-verification' render={(props: any) => <DeliveryVerification {...props} />} />
+            <Route exact path='/add-delivery-verification' render={(props: any) => <AddDeliveryVerification {...props} />} />
+            <Route exact path='/edit-delivery-verification' render={(props: any) => <AddDeliveryVerification {...props} />} />
+            <Route exact path='/view-delivery-verification' render={(props: any) => <ViewDeliveryVerification {...props} />} />
+            <Route exact path='/frenchise' render={(props: any) => <Frenchise {...props} />} />
+            <Route exact path='/add-frenchise' render={(props: any) => <AddFrenchise {...props} />} />
+            <Route exact path='/edit-frenchise' render={(props: any) => <AddFrenchise {...props} />} />
+            <Route exact path='/view-frenchise' render={(props: any) => <ViewFrenchise {...props} />} />
+            <Route exact path='/payment' render={(props: any) => <ListPaymentDetail {...props} />} />
+            <Route exact path='/view-payment' render={(props: any) => <ViewPayment {...props} />} />
+            <Route exact path='/payout' render={(props: any) => <ListPayOutDetail {...props} />} />
+            <Route exact path='/view-payout' render={(props: any) => <ViewPayout {...props} />} />
+            <Route exact path='/rating' render={(props: any) => <Rating {...props} />} />
+            <Route exact path='/view-rating' render={(props: any) => <ViewRating {...props} />} />
+            <Route exact path='/rating-data' render={(props: any) => <RatingData {...props} />} />
+            <Route exact path='/view-rating-data' render={(props: any) => <ViewRatingData {...props} />} />
+            <Route exact path='/rating-master' render={(props: any) => <RatingMaster {...props} />} />
+            <Route exact path='/view-rating-master' render={(props: any) => <ViewRatingMaster {...props} />} />
              {/* <Redirect from="/" to="/dashboard" /> */}
             {/* <Route exact path='/signup' render={(props: any) => <Signup {...props} />} /> */}
         </Switch>

@@ -98,6 +98,51 @@ export default {
         }
       ]
     },
+    {
+      id:'Frenchise management',
+      name: 'Frenchise Management',
+      icon: 'fa fa-shopping-basket fs-16',
+      children: [
+        {
+          name: 'Frenchise',
+          url: '/frenchise'
+        }
+      ]
+    },
+    {
+      id:'Payment management',
+      name: 'Payment Management',
+      icon: 'fa fa-money fs-16',
+      children: [
+        {
+          name: 'Payment',
+          url: '/payment'
+        },
+        {
+          name: 'Payout',
+          url: '/payout'
+        }
+      ]
+    },
+    {
+      id:'Rating management',
+      name: 'Rating Management',
+      icon: 'fa fa-star fs-16',
+      children: [
+        {
+          name: 'Rating',
+          url: '/rating'
+        },
+        {
+          name: 'Rating Data',
+          url: '/rating-data'
+        },
+        {
+          name: 'Rating Master',
+          url: '/rating-master'
+        }
+      ]
+    },
   ]
 }
 

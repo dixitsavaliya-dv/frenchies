@@ -332,9 +332,9 @@ class Admin extends React.Component {
           }
         >
           <div className="sidenav__brand">
-            <i className="fas fa-feather-alt sidenav__brand-icon" />
-            <Link className="sidenav__brand-link" to="/admin/dashboard">
-              Ux<span className="text-light">Pro</span>
+            <i className="fa fa-shopping-basket sidenav__brand-icon" />
+            <Link className="sidenav__brand-link" to="/dashboard">
+              Frenchise
             </Link>
             <i
               className="fas fa-times sidenav__brand-close"
